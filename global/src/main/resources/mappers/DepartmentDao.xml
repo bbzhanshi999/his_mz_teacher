@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neuedu.his.global.dao.DepartmentDao">
+
+
+    <select id="findById" resultType="com.neuedu.his.common.bean.Department">
+        select * from depart_info where del_flag!='1' and id=#{id}
+    </select>
+
+    <select id="findList" resultType="com.neuedu.his.common.bean.Department">
+        select * from depart_info
+        <where>
+            and del_flag!='1'
+            <if test="departName != null and departName!=''">
+                and depart_name =#{departName}
+            </if>
+        </where>
+    </select>
+</mapper>
